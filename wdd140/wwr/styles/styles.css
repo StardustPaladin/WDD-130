@@ -1,0 +1,248 @@
+/* Basic reset & typography */
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    background-color: #f7faf8; /* pale background */
+    color: #43f8cd;
+    line-height: 1.4;
+}
+
+/* Page container */
+#content {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header / nav */
+header {
+    background-color: rgba(2, 236, 173, 0.85);
+    color: #ffffff;
+    padding: 10px 0;
+}
+.header-inner {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+.logo {
+    width: 80px;
+}
+
+/* simple inline nav */
+nav {
+    display:flex;
+    gap: 16px;
+    align-items:center;
+}
+nav a {
+    color: #e6fff6;
+    text-decoration: none;
+    padding: 6px 8px;
+    font-size: 0.95rem;
+}
+nav a:hover {
+    background-color: rgba(212, 8, 8, 0.648);
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Hero image full-width (inside content or full-bleed depending on your HTML) */
+#hero-img {
+    width: 100%;
+    display: block;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Hero message centered */
+#hero-msg {
+    text-align: center;
+    margin: 36px 0;
+}
+#hero-msg h1 {
+    margin: 0 0 8px;
+    font-size: 1.6rem;
+}
+#hero-msg h4 {
+    margin: 0 0 12px;
+    color: #e6fff6;
+}
+
+/* Buttons */
+.button-box { text-align:center; margin-bottom:24px; }
+.book, .join {
+    display:inline-block;
+    background-color:#ff5e19;
+    color:#ffffff;
+    padding:8px 14px;
+    border-radius:4px;
+    text-decoration:none;
+    font-weight:bold;
+}
+.book:hover, .join:hover {
+    background-color:#e5f31b;
+    text-decoration: underline;
+}
+
+/* Cards stack (Rivers, Camping, Rapids) */
+main section {
+    text-align: center;
+    margin-bottom: 48px;
+}
+.rapids-card, .card {
+    max-width: 360px;
+    margin: 0 auto 16px;
+    position: relative;
+}
+.card-img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    display:block;
+    margin: 0 auto;
+    border: 6px solid transparent;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* small icon aligned to the right of each card */
+.icon {
+    width: 80px;
+    position: relative;
+    float: right;
+    margin-right: calc(50% - 40px); /* push it to the side of centered card */
+    margin-top: -50px;
+}
+
+/* Ensure floats clear */
+.rapids-card::after,
+.card::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* The tall background block shown in the screenshot */
+#background {
+    height: 725px;
+    background-color: #d6bfa6; /* tan/beige block */
+    margin: 0;
+}
+
+/* Message section that sits after the big background image */
+.msg {
+    background-color: #ffffff;
+    color: #35f523;
+    padding: 12px 18px;
+    text-align: center;
+}
+.msg h2 { margin: 0 0 6px; color: #52fffc; }
+.msg p { margin: 0 0 12px; color: #36ffcd; max-width:800px; margin-left:auto; margin-right:auto; }
+
+/* Footer */
+footer {
+    background-color: #6b776f; /* muted green bar like screenshot */
+    color: #e6fff6;
+    padding: 10px 0 18px;
+    font-size: 1.05rem;
+}
+footer p { margin: 8px 0; font-size: 1.05rem; }
+footer a {
+    color: #dff3ef;
+    text-decoration: none;
+}
+footer a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Make only the Rivers card place its icon immediately to the right of the photo */
+.rivers-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* space between image and icon */
+}
+
+.rivers-card .card-img {
+    margin: 0; /* remove auto centering used elsewhere */
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.rivers-card .icon {
+    width: 48px;      /* smaller icon next to the photo */
+    float: none;
+    position: static;
+    margin: 0;
+}
+
+/* Make the Camping card place its fire icon immediately to the right of the photo */
+.camping-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* space between image and icon */
+}
+
+.camping-card .card-img {
+    margin: 0; /* remove auto centering used elsewhere */
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.camping-card .icon {
+    width: 48px;      /* smaller icon next to the photo */
+    float: none;
+    position: static;
+    margin: 0;
+}
+
+/* center main content and stack sections vertically while keeping card rows centered */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ensure hero and mountains images are centered and responsive */
+#hero-img,
+.mountains {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Make the Rapids card place its oars icon immediately to the right of the photo */
+.rapids-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* space between image and icon */
+}
+
+.rapids-card .card-img {
+    margin: 0;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.rapids-card .icon {
+    width: 48px;
+    float: none;
+    position: static;
+    margin: 0;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+    .card-img { width: 260px; height:260px; }
+    .icon { display:none; } /* hide decorative icons on very small screens */
+    #content { padding: 0 12px; }
+}

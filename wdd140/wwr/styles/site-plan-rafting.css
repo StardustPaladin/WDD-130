@@ -5,7 +5,7 @@
   /* Your color palette */
   --primary-color: #1E88E5;   /* River Blue */
   --secondary-color: #F5F5F5; /* Light Gray (almost white) */
-  --accent1-color: #2E7D32;   /* Adventure Green */
+  --accent1-color: #dfd516;   /* Adventure Green */
   --accent2-color: #F4511E;   /* Sunset Orange */
 
   /* Fonts */
@@ -17,7 +17,7 @@
   --headline-color-on-color: #FFFFFF;   /* White on dark backgrounds */
   --paragraph-color-on-white: #424242;  /* Dark gray on white */
   --paragraph-color-on-color: #FFFFFF;  /* White on colored background */
-  --paragraph-background-color: #2E7D32; /* Green block for emphasis */
+  --paragraph-background-color: #2fee38; /* Green block for emphasis */
 
   /* Navigation */
   --nav-link-color: #FFFFFF;
