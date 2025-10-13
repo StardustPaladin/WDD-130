@@ -1,11 +1,22 @@
+/* Import headline and body fonts (Merriweather for body, Montserrat for headlines) */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Montserrat:wght@400;600;700&display=swap');
+
 /* Basic reset & typography */
 * { box-sizing: border-box; }
 body {
     margin: 0;
-    font-family: Georgia, "Times New Roman", serif;
+    padding: 0;
+    /* body uses a readable serif from the site plan with fallbacks */
+    font-family: "Merriweather", Georgia, "Times New Roman", serif;
     background-color: #f7faf8; /* pale background */
     color: #43f8cd;
     line-height: 1.4;
+    font-size: 22px; /* increased base font size */
+}
+
+/* Remove default margin for h2 elements */
+h2 {
+    margin: 0;
 }
 
 /* Page container */
@@ -39,7 +50,7 @@ nav {
 nav a {
     color: #e6fff6;
     text-decoration: none;
-    padding: 6px 8px;
+    padding: 35px;
     font-size: 0.95rem;
 }
 nav a:hover {
@@ -70,20 +81,30 @@ nav a:hover {
     color: #e6fff6;
 }
 
-/* Buttons */
-.button-box { text-align:center; margin-bottom:24px; }
+/* Headline font for homepage title and message headings */
+.home-title,
+.msg h2 {
+    font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 600;
+}
+
+/* make the homepage title twice the base size */
+.home-title {
+    font-size: 2em;
+    margin-top: 10px;
+}
+
+/* Buttons: adjust readable size */
 .book, .join {
     display:inline-block;
     background-color:#ff5e19;
     color:#ffffff;
-    padding:8px 14px;
-    border-radius:4px;
+    padding:15px 30px;
+    border-radius:5px;
     text-decoration:none;
     font-weight:bold;
-}
-.book:hover, .join:hover {
-    background-color:#e5f31b;
-    text-decoration: underline;
+    font-size: 18px;
+    margin-top: 50px;
 }
 
 /* Cards stack (Rivers, Camping, Rapids) */
@@ -102,7 +123,7 @@ main section {
     object-fit: cover;
     display:block;
     margin: 0 auto;
-    border: 6px solid transparent;
+    border: 10px solid #0b3f31;
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
@@ -113,6 +134,7 @@ main section {
     float: right;
     margin-right: calc(50% - 40px); /* push it to the side of centered card */
     margin-top: -50px;
+    padding-top: 10px;
 }
 
 /* Ensure floats clear */
@@ -126,26 +148,43 @@ main section {
 /* The tall background block shown in the screenshot */
 #background {
     height: 725px;
-    background-color: #d6bfa6; /* tan/beige block */
+    background-color: #caa77a; /* brown/tan */
     margin: 0;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
 }
 
 /* Message section that sits after the big background image */
 .msg {
     background-color: #ffffff;
     color: #35f523;
-    padding: 12px 18px;
+    padding: 35px;
     text-align: center;
+    line-height: 1.5em;
 }
 .msg h2 { margin: 0 0 6px; color: #52fffc; }
-.msg p { margin: 0 0 12px; color: #36ffcd; max-width:800px; margin-left:auto; margin-right:auto; }
+.msg p {
+    margin: 0 0 12px;
+    color: #36ffcd;
+    max-width:800px;
+    margin-left:auto;
+    margin-right:auto;
+    font-size: 0.8em;
+    padding-bottom: 15px;
+}
 
 /* Footer */
 footer {
-    background-color: #6b776f; /* muted green bar like screenshot */
-    color: #e6fff6;
-    padding: 10px 0 18px;
+    background-color: #caa77a;
+    color: #ffffff;
+    padding: 25px 50px;
     font-size: 1.05rem;
+    margin-top: 200px;
+    text-align: center; /* center footer content */
 }
 footer p { margin: 8px 0; font-size: 1.05rem; }
 footer a {
@@ -155,6 +194,27 @@ footer a {
 footer a:hover {
     color: #ffffff;
     text-decoration: underline;
+}
+
+footer .social {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    align-items: center;
+    margin-top: 12px;
+}
+
+footer .social a {
+    display: inline-block;
+    line-height: 0;
+}
+
+footer .social img {
+    width: 36px;
+    height: 36px;
+    display: block;
+    object-fit: contain;
+    padding-top: 0; /* remove previous top padding so icons align */
 }
 
 /* Make only the Rivers card place its icon immediately to the right of the photo */
@@ -241,8 +301,15 @@ main {
 }
 
 /* Responsive tweaks */
-@media (max-width: 600px) {
-    .card-img { width: 260px; height:260px; }
-    .icon { display:none; } /* hide decorative icons on very small screens */
-    #content { padding: 0 12px; }
+@media (max-width: 600px) {}
+    /* ...existing code... */
+.card-img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    display:block;
+    margin: 0 auto;
+    border: 10px solid #0b3f31;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    border-radius: 8px; /* added: rounded corners visible on images */
 }
