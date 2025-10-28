@@ -31,6 +31,9 @@ header {
     background-color: rgba(2, 236, 173, 0.85);
     color: #ffffff;
     padding: 10px 0;
+    display: grid;
+    grid-template-columns: 150px auto;
+
 }
 .header-inner {
     display:flex;
@@ -39,6 +42,9 @@ header {
 }
 .logo {
     width: 80px;
+    padding-top: 5px;
+    justify-self: center;
+    align-self: center;
 }
 
 /* simple inline nav */
@@ -46,6 +52,8 @@ nav {
     display:flex;
     gap: 16px;
     align-items:center;
+    display: flex;
+    justify-content: space-around;
 }
 nav a {
     color: #e6fff6;
@@ -60,17 +68,31 @@ nav a:hover {
 }
 
 /* Hero image full-width (inside content or full-bleed depending on your HTML) */
+#hero {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    margin-top: -40px; /* reduce white space above hero */
+}
+
 #hero-img {
     width: 100%;
     display: block;
     height: auto;
     object-fit: cover;
+
+}
+
+#hero-box {
+    grid-column: 1/4;
+    grid-row: 1/3;
+     z-index: -1;
 }
 
 /* Hero message centered */
 #hero-msg {
     text-align: center;
-    margin: 36px 0;
+    margin: 8px 0;
+    margin-top: 20px; /* tighter hero message spacing */
 }
 #hero-msg h1 {
     margin: 0 0 8px;
@@ -78,7 +100,7 @@ nav a:hover {
 }
 #hero-msg h4 {
     margin: 0 0 12px;
-    color: #e6fff6;
+    color: rgb(0, 0, 0);
 }
 
 /* Headline font for homepage title and message headings */
@@ -110,7 +132,7 @@ nav a:hover {
 /* Cards stack (Rivers, Camping, Rapids) */
 main section {
     text-align: center;
-    margin-bottom: 48px;
+    margin-bottom: 8px; /* very small white space between sections */
 }
 .rapids-card, .card {
     max-width: 360px;
@@ -123,8 +145,9 @@ main section {
     object-fit: cover;
     display:block;
     margin: 0 auto;
-    border: 10px solid #0b3f31;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    border: 10px solid #d9c2a3;
+    transition: transform .5s;
+    box-shadow: 5px 5px 10px #6f7364;
 }
 
 /* small icon aligned to the right of each card */
@@ -145,26 +168,29 @@ main section {
     clear: both;
 }
 
+.card-img:hover {
+    opacity: .6;
+    transform: scale(1.1);
+}
+         
 /* The tall background block shown in the screenshot */
 #background {
-    height: 725px;
+    height: 300px; /* reduced to remove extra white space */
     background-color: #caa77a; /* brown/tan */
     margin: 0;
-    width: 100vw;
+    /* Use as a regular grid item (avoid full-bleed calculations here) */
+    width: 100%;
     position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    z-index: 0;
 }
 
 /* Message section that sits after the big background image */
 .msg {
-    background-color: #ffffff;
-    color: #35f523;
+    background-color: #6f7364;
     padding: 35px;
-    text-align: center;
-    line-height: 1.5em;
+    grid-column: 6/10;
+    grid-row: 6/7;
+    box-shadow: 5px 5px 10px #6f7364;
 }
 .msg h2 { margin: 0 0 6px; color: #52fffc; }
 .msg p {
@@ -179,12 +205,12 @@ main section {
 
 /* Footer */
 footer {
-    background-color: #caa77a;
-    color: #ffffff;
-    padding: 25px 50px;
-    font-size: 1.05rem;
-    margin-top: 200px;
-    text-align: center; /* center footer content */
+            background-color: #6f7364;
+        padding: 16px 30px; /* reduced padding */
+        margin-top: 30px; /* reduced whitespace before footer */
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
 }
 footer p { margin: 8px 0; font-size: 1.05rem; }
 footer a {
@@ -215,7 +241,14 @@ footer .social img {
     display: block;
     object-fit: contain;
     padding-top: 0; /* remove previous top padding so icons align */
+    border-radius: 6px; /* small rounding */
+    border: 2px solid rgba(255,255,255,0.12);
+    background-color: rgba(255,255,255,0.03);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
 }
+
+/* Ensure social images are visible and clickable */
+.social a img { display: inline-block; }
 
 /* Make only the Rivers card place its icon immediately to the right of the photo */
 .rivers-card {
@@ -248,7 +281,7 @@ footer .social img {
 }
 
 .camping-card .card-img {
-    margin: 0; /* remove auto centering used elsewhere */
+    margin: 0;
     width: 300px;
     height: 300px;
     object-fit: cover;
@@ -269,15 +302,13 @@ main {
 }
 
 /* ensure hero and mountains images are centered and responsive */
-#hero-img,
-.mountains {
+#hero-img, .mountains {
     display: block;
     margin-left: auto;
     margin-right: auto;
     max-width: 100%;
     height: auto;
 }
-
 /* Make the Rapids card place its oars icon immediately to the right of the photo */
 .rapids-card {
     display: flex;
@@ -301,15 +332,119 @@ main {
 }
 
 /* Responsive tweaks */
+/* Grid for the homepage layout (assignment: main.home-grid with 10 equal columns)
+   and explicit placement of child elements. */
+/* Homepage grid: 10 equal columns, place cards side-by-side */
+main.home-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-auto-rows: minmax(200px, auto);
+    gap: 12px 12px; /* very small vertical and horizontal gaps */
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 8px 8px; /* minimal padding around the grid */
+}
+
+/* Place card sections on the requested grid lines */
+.rivers-card { grid-column: 2 / 4; grid-row: 2 / 3; z-index: 3; justify-content: center; }
+.camping-card { grid-column: 5 / 7; grid-row: 2 / 3; z-index: 3; justify-content: center; }
+.rapids-card { grid-column: 8 / 10; grid-row: 2 / 3; z-index: 3; justify-content: center; }
+
+/* Background spans the full grid area specified in the assignment */
+/* background spans full width below the three cards */
+#background { grid-column: 1 / -1; grid-row: 4 / 9; }
+
+/* Mountains image placement and sizing (take full width of the grid area) */
+.mountains {
+    grid-column: 2 / 7;
+    grid-row: 5 / 8;
+    object-fit: cover;
+    z-index: 0;
+}
+
+/* Message placed under the mountains */
+.msg { grid-column: 6 / 10; grid-row: 6 / 7; align-self: center; z-index: 2; justify-self: center; }
+
+/* Ensure the mountains image fills its grid area; keep card images at their intended size */
+.home-grid .mountains {
+    width: 100%;
+    height: auto;
+}
+
+/* Make card internals stack vertically in the new top-to-bottom layout */
+.rivers-card,
+.camping-card,
+.rapids-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+}
+
+/* Card images fill the available width on stacked layout (but keep a max width) */
+.rivers-card .card-img,
+.camping-card .card-img,
+.rapids-card .card-img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border: 10px solid #d9c2a3;
+    box-shadow: 5px 5px 10px #6f7364;
+}
+
+.home-grid .mountains {
+    width: 700px;
+    height: 420px;
+    object-fit: cover;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.35);
+}
+
+/* Center icons under images */
+.rivers-card .icon,
+.camping-card .icon,
+.rapids-card .icon {
+    width: 64px;
+    float: none;
+    margin: 0;
+}
+
+/* Make card titles visible and spaced from the icons/images; keep them above background */
+.rivers-card h2,
+.camping-card h2,
+.rapids-card h2 {
+    margin: 12px 0 0 0; /* small gap above title */
+    font-size: 18px;
+    color: #333333; /* dark text for readability */
+    position: relative;
+    z-index: 4; /* above mountains/background */
+    line-height: 1.2;
+}
+
+/* Style the message box to match the example */
+.msg {
+    background-color: #6f7364; /* muted green/gray */
+    color: #ffffff;
+    padding: 30px 28px;
+    width: 380px;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.35);
+}
+
 @media (max-width: 600px) {}
     /* ...existing code... */
-.card-img {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-    display:block;
-    margin: 0 auto;
-    border: 10px solid #0b3f31;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    border-radius: 8px; /* added: rounded corners visible on images */
+/* Responsive: on smaller screens, make card images fluid and auto-height */
+@media (max-width: 800px) {
+    .home-grid { --card-width: 100%; --card-height: auto; }
+    .rivers-card .card-img,
+    .camping-card .card-img,
+    .rapids-card .card-img,
+    .home-grid .mountains {
+        width: 100%;
+        height: auto;
+    }
+    .rivers-card h2,
+    .camping-card h2,
+    .rapids-card h2 {
+        font-size: 28px;
+    }
 }
