@@ -173,3 +173,12 @@ nav a:hover {
   border-top: 1px solid;
   border-right: 1px solid;
 }
+
+/* Wireframe images used in the site plan: make responsive and visible */
+.wireframe {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid rgba(0,0,0,0.08);
+  display: block;
+  margin: 1em auto;
+}
