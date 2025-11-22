@@ -182,3 +182,64 @@ nav a:hover {
   display: block;
   margin: 1em auto;
 }
+
+/* Interactive map styles */
+.map-wrap {
+  position: relative;
+  max-width: 900px;
+  margin: 1.5rem auto;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #111;
+}
+.map-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.map-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,0.95);
+  border: 2px solid #222;
+  color: #222;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  z-index: 10;
+}
+.map-popup {
+  position: absolute;
+  /* left/top will be set dynamically so popup appears near the marker */
+  width: 220px;
+  background: #fff;
+  color: #111;
+  border-radius: 6px;
+  padding: .6rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  display: none;
+  z-index: 20;
+  transform: translate(-50%, -110%); /* anchor popup above marker center */
+}
+.map-popup .close {
+  position: absolute;
+  right: .4rem;
+  top: .2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.detail-link {
+  display: inline-block;
+  margin-top: .4rem;
+  color: #0066cc;
+}
+@media (max-width:600px){
+  .map-popup { left: .5rem !important; right: .5rem; transform: none; width: auto; }
+}
