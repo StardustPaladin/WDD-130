@@ -243,3 +243,67 @@ nav a:hover {
 @media (max-width:600px){
   .map-popup { left: .5rem !important; right: .5rem; transform: none; width: auto; }
 }
+
+/* Home page grid and layout */
+.home main {
+  display: block; /* mobile: stack sections */
+  gap: 1.25rem;
+}
+
+.home nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0.75rem 0 1rem 0;
+}
+
+.home .hero {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.home .hero img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.home .features {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 0 0.5rem;
+}
+.home .features article {
+  padding: 0.75rem;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.04);
+  text-align: left;
+}
+
+@media (min-width: 800px) {
+  .home main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  /* hero spans left column, but we keep it full-width look by spanning both columns */
+  .home .hero { grid-column: 1 / -1; flex-direction: row; align-items: center; }
+  .home .hero img { max-width: 45%; }
+
+  /* features appear as a three-column block under the hero on wide screens */
+  .home .features { grid-column: 1 / -1; grid-template-columns: repeat(3, 1fr); padding: 0; }
+}
+
+/* Typography tweaks for readability */
+.home h2 { font-size: 1.6rem; margin: 0; }
+.home p { max-width: 60ch; margin: 0.25rem auto; }
+
+/* Small utility spacing */
+.home .hero > p + p { margin-top: 0.6rem; }
+
