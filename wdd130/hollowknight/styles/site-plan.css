@@ -313,11 +313,12 @@ nav a:hover {
 }
 
 .features article {
-  background: #1d1d1d;
+  /* lighter, themed background for feature cards (not pure black) */
+  background: rgba(176,158,220,0.06); /* soft purple tint */
   padding: 1.5rem;
   border-radius: 10px;
-  color: white;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  color: var(--paragraph-color-on-white);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
 }
 
 /* Explore (child) page grid and spacing */
@@ -348,6 +349,90 @@ nav a:hover {
   .explore .info-section { grid-column: 2 / 3; }
   .explore .map-wrap { margin: 0; }
 }
+
+  /* Legends (second child) page styles */
+  .legends main {
+    display: block;
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+  .legends .hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .legends .hero-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+  }
+  .legends .features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .legends .features .feature-img, .legends .feature-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    display: block;
+    margin: 0.5rem 0;
+  }
+  .legends .feature-boss {
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 6px;
+  }
+    .legends .feature-boss {
+      display: flex;
+      flex-direction: row; /* horizontal by default */
+      gap: 1rem;
+      align-items: center; /* center vertically to shorten overall height */
+      padding: 0.8rem 1rem; /* increase horizontal padding for wider feel */
+      background: rgba(176,158,220,0.06); /* subtle accent for boss card */
+      border-left: 6px solid var(--accent2-color);
+      border-radius: 8px;
+      color: var(--paragraph-color-on-white);
+      box-shadow: 0 6px 18px rgba(11,11,11,0.10);
+      transition: transform 160ms ease, box-shadow 160ms ease;
+      width: 100%;
+      max-width: 100%;
+    }
+    .legends .feature-boss:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(11,11,11,0.16);
+    }
+    .legends .feature-boss .feature-img {
+      flex: 0 0 320px; /* larger image for wider card */
+      max-width: 320px;
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      display: block;
+      margin: 0;
+    }
+
+  @media (min-width: 900px) {
+    .legends main { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .legends .hero { grid-column: 1 / -1; }
+    .legends .features { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; }
+    .legends .hero-inner { flex-direction: row; align-items: center; }
+    .legends .hero-img { max-width: 320px; margin-right: 1rem; }
+    /* Make the boss card span both columns (wider box) */
+    .legends .feature-boss { grid-column: 1 / -1; }
+    /* On wide screens show boss image and text side-by-side (already default)
+       keep image constrained and text flexible */
+    .legends .feature-boss .feature-img { margin-right: 1rem; }
+
+    /* Small screens: stack vertically */
+    @media (max-width: 640px) {
+      .legends .feature-boss { flex-direction: column; align-items: center; text-align: center; }
+      .legends .feature-boss .feature-img { flex: 0 0 auto; max-width: 100%; margin-right: 0; }
+      .legends .feature-boss p { margin: 0.5rem 0; }
+    }
+  }
 
 
 
