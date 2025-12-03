@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="styles/site-plan.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
-  <body>
+  <body class="explore">
     <header>
       <h1>Echoes of Hallownest</h1>
       <h2>Explore Hallownest</h2>
@@ -21,19 +21,27 @@
 
     <main>
       <h2>Map</h2>
-      <div class="map-wrap" aria-label="Map of Hallownest" role="application">
-        <img class="map-img" src="images/map of hollownest.png" alt="Map of Hallownest">
-        <!-- markers: adjust left/top percentage to move them -->
-        <button class="map-marker" style="left:30%; top:42%;" data-title="Fog Canyon" data-desc="A glowing maze filled with jellyfish enemies and explosive hazards.">●</button>
-        <button class="map-marker" style="left:70%; top:35%;" data-title="Resting Grounds" data-desc="Quiet tombs filled with spirits and ancient graves.">●</button>
-        <button class="map-marker" style="left:60%; top:65%;" data-title="Royal Waterways" data-desc="Dark tunnels full of grime and creatures">●</button>
+      <section class="map-section">
+        <div class="map-wrap" aria-label="Map of Hallownest" role="application">
+          <img class="map-img" src="images/map of hollownest.png" alt="Map of Hallownest">
+          <!-- markers: adjust left/top percentage to move them -->
+          <button class="map-marker" style="left:30%; top:42%;" data-title="Fog Canyon" data-desc="A glowing maze filled with jellyfish enemies and explosive hazards.">●</button>
+          <button class="map-marker" style="left:70%; top:35%;" data-title="Resting Grounds" data-desc="Quiet tombs filled with spirits and ancient graves.">●</button>
+          <button class="map-marker" style="left:60%; top:65%;" data-title="Royal Waterways" data-desc="Dark tunnels full of grime and creatures">●</button>
 
-        <div id="map-popup" class="map-popup" role="dialog" aria-hidden="true">
-          <button id="map-popup-close" class="close" aria-label="Close popup">✕</button>
-          <h3 id="map-popup-title"></h3>
-          <p id="map-popup-desc"></p>
+          <div id="map-popup" class="map-popup" role="dialog" aria-hidden="true">
+            <button id="map-popup-close" class="close" aria-label="Close popup">✕</button>
+            <h3 id="map-popup-title"></h3>
+            <p id="map-popup-desc"></p>
+          </div>
         </div>
-      </div>
+      </section>
+
+      <section class="info-section">
+        <h3>How it works</h3>
+        <p>Click a marker on the map to see details about the area, enemies, and notable locations. Use the popup to read short descriptions for deeper lore visit the Legends page.</p>
+        <p><a href="legends.html">Open Legends</a> • <a href="index.html">Back to Home</a></p>
+      </section>
     </main>
 
     <footer>
