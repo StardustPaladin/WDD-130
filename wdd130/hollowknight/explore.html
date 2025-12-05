@@ -27,7 +27,20 @@
           <!-- markers: adjust left/top percentage to move them -->
           <button class="map-marker" style="left:30%; top:42%;" data-title="Fog Canyon" data-desc="A glowing maze filled with jellyfish enemies and explosive hazards.">●</button>
           <button class="map-marker" style="left:70%; top:35%;" data-title="Resting Grounds" data-desc="Quiet tombs filled with spirits and ancient graves.">●</button>
-          <button class="map-marker" style="left:60%; top:65%;" data-title="Royal Waterways" data-desc="Dark tunnels full of grime and creatures">●</button>
+          <button class="map-marker" style="left:50%; top:65%;" data-title="Royal Waterways" data-desc="Dark tunnels full of grime and creatures">●</button>
+          <button class="map-marker" style="left:15%; top:70%;" data-title="Deepnest" data-desc="A dark, maze-like spider infested area.">●</button>
+          <button class="map-marker" style="left:57%; top:90%;" data-title="The Abyss" data-desc="A vast, shadowy chasm filled with ancient Void and haunting remnants of the past.">●</button>
+          <button class="map-marker" style="left:20%; top:50%;" data-title="Queen's Gardens" data-desc="A lush, overgrown garden filled with organic beauty.">●</button>
+          <button class="map-marker" style="left:43%; top:20%;" data-title="Dirtmouth" data-desc="The surface entrance to Hallownest, a quaint village overlooking the caverns below.">●</button>
+          <button class="map-marker" style="left:60%; top:75%;" data-title="Ancient Basin" data-desc="A sunken realm of forgotten ruins and mysterious ancient structures.">●</button>
+          <button class="map-marker" style="left:25%; top:35%;" data-title="Green Path" data-desc="A lush, mossy corridor filled with natural vegetation.">●</button>
+          <button class="map-marker" style="left:85%; top:55%;" data-title="Kingdom's Edge" data-desc="The boundary between the known world and the void, a desolate frontier.">●</button>
+          <button class="map-marker" style="left:82%; top:70%;" data-title="The Hive" data-desc="A massive structure filled with aggressive, warrior-like insects.">●</button>
+          <button class="map-marker" style="left:28%; top:20%;" data-title="Hollwing Cliffs" data-desc="A towering formation with precarious paths and ancient echoes.">●</button>
+          <button class="map-marker" style="left:65%; top:20%;" data-title="Crystal Peak" data-desc="A shimmering mountain of crystals and mineral deposits.">●</button>
+          <button class="map-marker" style="left:67%; top:49%;" data-title="City of Tears" data-desc="The grand capital of Hallownest, now a hollow, sorrowful ruin.">●</button>
+          <button class="map-marker" style="left:43%; top:53%;" data-title="Fungal Wastes" data-desc="A sprawling fungal ecosystem teeming with spore-filled caverns.">●</button>
+          <button class="map-marker" style="left:48%; top:30%;" data-title="Forgotten Crossroads" data-desc="The central hub of Hallownest, a bustling intersection of many paths.">●</button>
 
           <div id="map-popup" class="map-popup" role="dialog" aria-hidden="true">
             <button id="map-popup-close" class="close" aria-label="Close popup">✕</button>
@@ -39,7 +52,7 @@
 
       <section class="info-section">
         <h3>How it works</h3>
-        <p>Click a marker on the map to see details about the area, enemies, and notable locations. Use the popup to read short descriptions for deeper lore visit the Legends page.</p>
+        <p>Click a marker on the map to see details about the area, enemies, and notable locations. Use the popup to read short descriptions — for deeper lore, visit the Legends page.</p>
         <p><a href="legends.html">Open Legends</a> • <a href="index.html">Back to Home</a></p>
       </section>
     </main>
@@ -67,15 +80,59 @@
             if (mapWrap) {
               const containerRect = mapWrap.getBoundingClientRect();
               const markerRect = marker.getBoundingClientRect();
-              // compute marker center relative to container
-              const left = markerRect.left - containerRect.left + markerRect.width / 2;
-              const top = markerRect.top - containerRect.top + markerRect.height / 2;
+              const markerLeft = markerRect.left - containerRect.left + markerRect.width / 2;
+              const markerTop = markerRect.top - containerRect.top + markerRect.height / 2;
+              
+              // show popup to measure its size
+              popup.style.display = 'block';
+              const popupWidth = popup.offsetWidth;
+              const popupHeight = popup.offsetHeight;
+              const gap = 10;
+              const padding = 8;
+              
+              // calculate space available in each direction
+              const spaceAbove = markerTop;
+              const spaceBelow = containerRect.height - markerTop;
+              const spaceLeft = markerLeft;
+              const spaceRight = containerRect.width - markerLeft;
+              
+              let left, top;
+              
+              // prioritize vertical placement (above is preferred, then below)
+              if (spaceAbove > popupHeight + gap) {
+                // place above marker
+                top = markerTop - popupHeight - gap;
+              } else if (spaceBelow > popupHeight + gap) {
+                // place below marker
+                top = markerTop + gap;
+              } else {
+                // center vertically if no space above or below
+                top = Math.max(padding, Math.min(markerTop - popupHeight / 2, containerRect.height - popupHeight - padding));
+              }
+              
+              // prioritize horizontal centering, then adjust if out of bounds
+              left = markerLeft;
+              if (left - popupWidth / 2 < padding) {
+                left = padding + popupWidth / 2;
+              } else if (left + popupWidth / 2 > containerRect.width - padding) {
+                left = containerRect.width - padding - popupWidth / 2;
+              }
+
+              // Force left-side placement for certain markers (keep them off the right edge)
+              if (t === "The Hive" || t === "Kingdom's Edge") {
+                // compute center coordinate so popup's right edge sits gap px left of marker center
+                let forced = markerLeft - gap - (popupWidth / 2);
+                // clamp into container (respect padding)
+                forced = Math.max(padding + popupWidth / 2, Math.min(forced, containerRect.width - padding - popupWidth / 2));
+                left = forced;
+                // vertically center the popup on the marker, but keep within bounds
+                top = Math.max(padding, Math.min(markerTop - popupHeight / 2, containerRect.height - popupHeight - padding));
+              }
+
               popup.style.left = left + 'px';
               popup.style.top = top + 'px';
+              popup.setAttribute('aria-hidden','false');
             }
-
-            popup.style.display = 'block';
-            popup.setAttribute('aria-hidden','false');
           });
         });
 

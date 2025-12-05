@@ -51,19 +51,27 @@ hr {
   background: var(--accent1-color);
 }
 header {
-  padding: 1em;
+  padding: 1.5em;
   text-align: center;
   color: var(--headline-color-on-color);
   background-color: var(--paragraph-background-color);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 header > h1, header > h2 {
   color: var(--headline-color-on-color);
+  margin: 0.25rem 0;
+  letter-spacing: 0.5px;
+}
+header > h1 {
+  font-size: 2rem;
 }
 
 p {
   font-family: var(--paragraph-font);
   color: var(--paragraph-color-on-white);
   padding: 1em;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
 }
 .colors {
   width: 100%;
@@ -117,10 +125,12 @@ nav a {
 }
 nav a:link, nav a:visited {
   color: var(--nav-link-color);
+  transition: all 200ms ease;
 }
 nav a:hover {
   color: var(--nav-hover-link-color);
   background-color: var(--nav-hover-background-color);
+  text-decoration: underline;
 }
 
 .sitemap {
@@ -189,6 +199,8 @@ nav a:hover {
   border-radius: 6px;
   overflow: hidden;
   background: #111;
+  border-left: 4px solid var(--accent2-color);
+  border-right: 4px solid var(--accent2-color);
 }
 .map-img {
   display: block;
@@ -215,15 +227,16 @@ nav a:hover {
 .map-popup {
   position: absolute;
   /* left/top will be set dynamically so popup appears near the marker */
-  width: 220px;
+  width: 180px;
   background: #fff;
   color: #111;
   border-radius: 6px;
-  padding: .6rem;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  padding: 0.5rem 0.6rem;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   display: none;
   z-index: 20;
-  transform: translate(-50%, -110%); /* anchor popup above marker center */
+  border-top: 3px solid var(--accent2-color);
 }
 .map-popup .close {
   position: absolute;
@@ -256,11 +269,12 @@ nav a:hover {
 }
 
 .home .hero {
-  padding: 1rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
 }
 .home .hero img {
   max-width: 100%;
@@ -277,8 +291,15 @@ nav a:hover {
 .home .features article {
   padding: 0.75rem;
   border-radius: 6px;
-  background: rgba(255,255,255,0.04);
+  background: rgba(176,158,220,0.06);
   text-align: left;
+  transition: all 200ms ease;
+  border-left: 3px solid transparent;
+}
+.home .features article:hover {
+  transform: translateX(4px);
+  border-left-color: var(--accent1-color);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 @media (min-width: 800px) {
@@ -319,6 +340,13 @@ nav a:hover {
   border-radius: 10px;
   color: var(--paragraph-color-on-white);
   box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  transition: all 200ms ease;
+  border-top: 3px solid transparent;
+}
+.features article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.16);
+  border-top-color: var(--accent2-color);
 }
 
 /* Explore (child) page grid and spacing */
@@ -330,13 +358,32 @@ nav a:hover {
   padding: 0.5rem;
 }
 .explore .info-section {
-  padding: 0.75rem;
-  background: rgba(255,255,255,0.02);
-  border-radius: 6px;
+  padding: 1rem;
+  background: rgba(176,158,220,0.06);
+  border-radius: 8px;
+  border-left: 4px solid var(--accent1-color);
   margin-top: 1rem;
   text-align: left;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
-.explore .info-section p { margin: 0.5rem 0; }
+.explore .info-section h3 {
+  margin-top: 0;
+  color: var(--headline-color-on-white);
+  font-size: 1.3rem;
+}
+.explore .info-section p { 
+  margin: 0.75rem 0; 
+  line-height: 1.6; 
+}
+.explore .info-section a {
+  color: var(--accent1-color);
+  text-decoration: none;
+  transition: all 150ms ease;
+}
+.explore .info-section a:hover {
+  color: var(--accent2-color);
+  text-decoration: underline;
+}
 
 @media (min-width: 900px) {
   .explore main {
@@ -433,6 +480,25 @@ nav a:hover {
       .legends .feature-boss p { margin: 0.5rem 0; }
     }
   }
+
+/* Footer refinement */
+footer {
+  padding: 1.5em;
+  text-align: center;
+  color: var(--headline-color-on-color);
+  background-color: var(--paragraph-background-color);
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+footer a {
+  color: var(--nav-link-color);
+  text-decoration: none;
+  transition: all 150ms ease;
+}
+footer a:hover {
+  color: var(--accent2-color);
+  text-decoration: underline;
+}
 
 
 
